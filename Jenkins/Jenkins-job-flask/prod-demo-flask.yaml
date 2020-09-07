@@ -1,0 +1,149 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: app-demo-flask
+  labels:
+    application: app-demo-flask
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        application: app-demo-flask
+    spec:
+      containers:
+      - name: app-demo-flask
+        image: account-number.dkr.ecr.us-east-1.amazonaws.com/repo-name:demo-flask$BUILD_NUMBER
+        ports:
+        - containerPort: 5000
+          # This name will be used in the Service.
+          name: demo-flask
+---
+# Service definition for a http/https service.
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-demo-flask
+  annotations:
+    # Note that the backend talks over HTTP.
+    service.beta.kubernetes.io/aws-load-balancer-backend-protocol: http
+    # TODO: Fill in with the ARN of your certificate.
+    service.beta.kubernetes.io/aws-load-balancer-ssl-cert: your acm arn
+    # Only run SSL on the port named "https" below.
+    service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "https"
+spec:
+  type: NodePort
+  loadBalancerIP:
+  ports:
+  - port: 80
+    name: http
+    # Use named container port.
+    targetPort: demo-flask
+  - port: 443
+    name: https
+    # Use named container port.
+    targetPort: demo-flask
+  selector:
+    application: app-demo-flask
+---
+apiVersion: "v1"
+kind: "ConfigMap"
+metadata:
+  name: "db-demo-flask-s-config"
+  namespace: "default"
+  labels:
+    app: db-demo-flask-s
+data:
+  POSTGRES_DB: "demo-flask"
+  POSTGRES_USER: "demo"
+  POSTGRES_PASSWORD: "add your db passowrd"
+---
+apiVersion: "apps/v1"
+kind: "Deployment"
+metadata:
+  name: db-demo-flask-s
+  namespace: default
+  labels:
+    name: db-demo-flask-s
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: db-demo-flask-s
+  template:
+    metadata:
+      labels:
+        service: db-demo-flask-s
+    spec:
+      containers:
+      - name: db-demo-flask-s
+        image: "postgres:alpine"
+        env:
+        - name: "POSTGRES_DB"
+          valueFrom:
+            configMapKeyRef:
+              key: "POSTGRES_DB"
+              name: "db-demo-flask-s-config"
+        - name: "POSTGRES_USER"
+          valueFrom:
+            configMapKeyRef:
+              key: "POSTGRES_USER"
+              name: "db-demo-flask-s-config"
+        - name: "POSTGRES_PASSWORD"
+          valueFrom:
+            configMapKeyRef:
+              key: "POSTGRES_PASSWORD"
+              name: "db-demo-flask-s-config"
+        ports:
+          - containerPort: 5432
+            name: db-demo-flask-s
+        volumeMounts:
+          - name: db-demo-flask-s-storage
+            mountPath: /var/lib/postgresql/data
+            subPath: db
+      volumes:
+        - name: db-demo-flask-s-storage
+          persistentVolumeClaim:
+            claimName: db-demo-flask-s-pv-claim
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: db-demo-flask-s-pv-claim
+spec:
+  storageClassName: gp2
+  accessModes:
+  - ReadWriteOnce
+  capacity:
+    storage: 1Gi
+  persistentVolumeReclaimPolicy: Retain
+  awsElasticBlockStore:
+    fsType: ext4
+    volumeID: aws://us-east-1/vol-id
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+   labels:
+     app: db-demo-flask-s
+   name: db-demo-flask-s-pv-claim
+spec:
+   accessModes:
+   - ReadWriteOnce
+   resources:
+      requests:
+         storage: 1Gi
+   storageClassName: gp2
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: db-demo-flask-s
+  labels:
+    service: db-demo-flask-s
+spec:
+  selector:
+    service: db-demo-flask-s
+  type: ClusterIP
+  ports:
+    - port: 5432

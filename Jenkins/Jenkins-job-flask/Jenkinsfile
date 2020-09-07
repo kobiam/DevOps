@@ -1,0 +1,51 @@
+pipeline {
+
+  environment {
+    registry = ""
+    dockerImage = ""
+  }
+
+  agent any
+
+  stages {
+
+    stage('Checkout Source') {
+      steps {
+        git branch: "staging",
+          credentialsId: 'git creds id',
+          url: 'git@github.com:repo/demo-flask.git'
+      }
+    }
+
+    stage('Build image') {
+      steps{
+        script {
+
+          dockerImage = docker.build(registry + ":prod-demo-flask$BUILD_NUMBER", " -f Dockerfile .")
+
+        }
+      }
+    }
+
+    stage('Push Image') {
+      steps{
+        script {
+          docker.withRegistry( 'https://your-account.dkr.ecr.us-east-1.amazonaws.com', 'ecr:us-east-1:xxx' ) {
+            dockerImage.push()
+            
+          }
+        }
+      }
+    }
+
+    stage('Deploy App') {
+      steps {
+        script {
+          kubernetesDeploy(configs: "prod-demo-flask.yaml", kubeconfigId: "mykubeconfig")
+        }
+      }
+    }
+
+  }
+
+}
