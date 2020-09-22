@@ -1,0 +1,38 @@
+pipeline {
+
+  agent any
+
+  stages {
+
+    stage('Checkout Source') {
+      steps {
+        git branch: "master",
+          credentialsId: 'your-git-creds-in-jenkins',
+          url: 'git@github.com:your-repo'
+      }
+    }
+
+    stage('Upload to S3') {
+        steps{
+            script {
+
+                dir(''){
+
+                    pwd(); //Log current directory
+
+                    withAWS(region:'us-east-1',credentials:'your-aws-creds-in-jenkins') {
+
+                        def identity=awsIdentity();//Log AWS credentials
+
+                        // Upload files from working directory '' in your project workspace
+                        s3Upload(bucket:"www.your-domain-or-bucket-name.com", workingDir:'', includePathPattern:'**/*');
+                    }
+
+                };
+            }
+        }
+    }
+
+  }
+
+}
