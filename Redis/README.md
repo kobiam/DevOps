@@ -1,6 +1,5 @@
 # Redis Intro
-<p>This is an intro to Redis.io in-memory database, key-value store, cache and message broker</p>
-
+This is an intro to Redis.io in-memory database, key-value store, cache and message broker
 #
 
 ### Redis Common Commands
@@ -27,7 +26,7 @@
 `SUBSCRIBE` Subscribes the client to the specified channels.
 
 `PUBLISH` Posts a message to the given channel.
-</br>
+
 <a href="https://redis.io/commands">Redis Commands</a> 
 
 #
@@ -51,6 +50,7 @@ you'll have to update both the runtime and the `redis.conf` file to ensure chang
 this is what `redis.conf` looks like:
 
 `save 900 1`
+
 `save 300 10`
 
 to change on runtime example:
@@ -79,6 +79,7 @@ that will save it every 60 seconds with at least 1000 keys changed.
 snapshots are in file: `dump.rdb`
 
 <strong>Append-only file </strong>every time Redis receives a command that change the dataset it will append to the AOF.
+
 when Redis is restarted it will re-play the AOF to rebuild the state.
 
 <strong>AOF Rewrite </strong>Redis is able to automatically rewrite the AOF in background when it gets too big.
