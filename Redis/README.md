@@ -27,6 +27,7 @@ This is an intro to Redis.io in-memory database, key-value store, cache and mess
 
 `PUBLISH` Posts a message to the given channel.
 
+
 <a href="https://redis.io/commands">Redis Commands</a> 
 
 #
@@ -35,6 +36,7 @@ This is an intro to Redis.io in-memory database, key-value store, cache and mess
 Redis includes the redis-benchmark utility that simulates running commands
 
 try this command: `redis-benchmark -n 100`
+
 
 <a href="https://redis.io/topics/benchmarks#how-fast-is-redis">How fast is Redis?</a> 
 
@@ -61,7 +63,7 @@ to change on runtime example:
 
 either way you need to update on both `redis.conf` and runtime in nodes.
 
-</br>
+
 <a href="https://redis.io/topics/config">Redis Configuration</a> 
 
 #
@@ -92,6 +94,7 @@ Redis is able to rebuild the AOF in the background without interrupting service 
 
 Whenever you issue a `BGREWRITEAOF` Redis will write the shortest sequence of commands needed to rebuild the current dataset in memory.
 
+
 <a href="https://redis.io/topics/persistence">Redis Persistence</a>
 
 #
@@ -104,5 +107,5 @@ To set up a Redis cluster you'll need at least 3 Redis instances in the cluster.
 This is a good option for HA concerns.
 Redis cluster splits your data across instances and provide automatic management and replication.
 
-</br>
+
 <a href="https://redis.io/topics/sentinel">Redis Sentinel</a> 
