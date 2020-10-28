@@ -4,7 +4,7 @@
 #
 
 <h3>Redis Common Commands</h3>
-`INFO`
+'INFO'
  <p>command returns information and statistics about the server</p>
 ```bash
 SET
