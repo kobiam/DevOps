@@ -32,15 +32,24 @@ try this command: `redis-benchmark -n 100`
 
 ### Redis Configuration
 Redis have a configuration file useally called redis.conf and it used to configure your redis nodes.
+
 to alter redis.conf you'll need to restart the node after the change but it is also possiable to do it without restart using `CONFIG SET` and `CONFIG GET`
+
 you'll have to update both the runtime and the redis.conf file to ensure changes will take effect after restart.
+
 this is what redis.conf looks like:
+
 `save 900 1`
 `save 300 10`
+
 to change on runtime example:
+
 900 seconds if there is at least 1 change to the dataset, and after 300 seconds if there are at least 10 changes to the dataset.
+
 `CONFIG SET SAVE "900 1 300 10"`
+
 either way you need to update on both redis.conf and runtime nodes.
+
 </br>
 <a href="https://redis.io/topics/config">Redis Configuration</a> 
 
