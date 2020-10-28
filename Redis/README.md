@@ -99,6 +99,42 @@ Whenever you issue a `BGREWRITEAOF` Redis will write the shortest sequence of co
 
 #
 
+### Redis logs
+
+
+
+#
+
+### Eviction policies
+Redis stores its data, called keys, in memory only and uses eviction policies to free memory in order to write new data.
+
+Eviction policies fall into two main categories: general policies that apply to all keys and policies that use a Time to Live (TTL) expiration value.
+
+General policies apply to any keys that do not have expiration set.
+
+**Policy and Description**
+
+`noeviction` Returns an error if the memory limit has been reached when trying to insert more data
+
+`allkeys-lru` Evicts the least recently used keys out of all keys
+
+`allkeys-lfu` Evicts the least frequently used keys out of all keys
+
+`allkeys-random` Randomly evicts keys out of all keys
+
+`volatile-lru` Evicts the least recently used keys out of all keys with an “expire” field set
+
+`volatile-lfu` Evicts the least frequently used keys out of all keys with an “expire” field set
+
+`volatile-random` Randomly evicts keys with an “expire” field set
+
+`volatile-ttl` Evicts the shortest time-to-live keys out of all keys with an “expire” field set.
+
+
+<a href="https://www.digitalocean.com/docs/databases/redis/how-to/choose-eviction-policies/">Redis Eviction Policies</a> 
+
+#
+
 ### Redis cluster and Sentinel
 Redis Sentinel will monitor your cluster and handle failovers of instances within the cluster.
 
