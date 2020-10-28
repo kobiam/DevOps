@@ -4,40 +4,51 @@
 #
 
 ### Redis Common Commands
-`INFO` command returns information and statistics about the server
-`SET` <p>Set key to hold the string value</p>
-`GET` <p>Get the value of key</p>
-`BGSAVE` <p>Save the DB in background</p>
-`SCAN` <p>iterates the set of keys in the currently selected Redis database.</p>
-`HSET` <p>Sets `field` in the hash stored at key to value</p>
-`HGET` <p>Returns the value associated with `field` in the hash stored at key</p>
-`PING` <p>This command is often used to test a connection</p>
-`KEYS` <p>Returns all keys matching pattern</p>
-`BLPOP` <p>is a blocking list pop primitive</p>
-`SUBSCRIBE` <p>Subscribes the client to the specified channels</p>
-`PUBLISH` <p>Posts a message to the given channel</p>
+`INFO` command returns information and statistics about the server.
+
+`SET` Set key to hold the string value.
+
+`GET` Get the value of key.
+
+`BGSAVE` Save the DB in background.
+
+`SCAN` iterates the set of keys in the currently selected Redis database.
+
+`HSET` Sets `field` in the hash stored at key to value.
+
+`HGET` Returns the value associated with `field` in the hash stored at key.
+
+`PING` This command is often used to test a connection.
+
+`KEYS` Returns all keys matching pattern.
+
+`BLPOP` is a blocking list pop primitive.
+
+`SUBSCRIBE` Subscribes the client to the specified channels.
+
+`PUBLISH` Posts a message to the given channel.
 </br>
 <a href="https://redis.io/commands">Redis Commands</a> 
 
 #
 
-<h3>Redis Benchmark Utility</h3>
+### Redis Benchmark Utility
 Redis includes the redis-benchmark utility that simulates running commands
 
 try this command: `redis-benchmark -n 100`
-</br>
+
 <a href="https://redis.io/topics/benchmarks#how-fast-is-redis">How fast is Redis?</a> 
 
 #
 
 ### Redis Configuration
-Redis have a configuration file useally called redis.conf and it used to configure your redis nodes.
+Redis have a configuration file useally called `redis.conf` and it used to configure your redis nodes.
 
-to alter redis.conf you'll need to restart the node after the change but it is also possiable to do it without restart using `CONFIG SET` and `CONFIG GET`
+to alter `redis.conf` you'll need to restart the node after the change but it is also possiable to do it without restart using `CONFIG SET` and `CONFIG GET`
 
-you'll have to update both the runtime and the redis.conf file to ensure changes will take effect after restart.
+you'll have to update both the runtime and the `redis.conf` file to ensure changes will take effect after restart.
 
-this is what redis.conf looks like:
+this is what `redis.conf` looks like:
 
 `save 900 1`
 `save 300 10`
@@ -48,7 +59,7 @@ to change on runtime example:
 
 `CONFIG SET SAVE "900 1 300 10"`
 
-either way you need to update on both redis.conf and runtime nodes.
+either way you need to update on both `redis.conf` and runtime in nodes.
 
 </br>
 <a href="https://redis.io/topics/config">Redis Configuration</a> 
@@ -65,11 +76,11 @@ to create a snapshot with intervals: `SAVE 60 1000`
 
 that will save it every 60 seconds with at least 1000 keys changed.
 
-snapshots are in file: dump.rdb
-</br>
+snapshots are in file: `dump.rdb`
+
 <strong>Append-only file </strong>every time Redis receives a command that change the dataset it will append to the AOF.
 when Redis is restarted it will re-play the AOF to rebuild the state.
-</br>
+
 <strong>AOF Rewrite </strong>Redis is able to automatically rewrite the AOF in background when it gets too big.
 
 if no rewrite of the log was performed in the meantime you can still save your data set just stopping the server, removing the latest command, and restarting Redis again.
@@ -79,7 +90,7 @@ AOF gets bigger and bigger as write operations are performed.
 Redis is able to rebuild the AOF in the background without interrupting service to clients.
 
 Whenever you issue a `BGREWRITEAOF` Redis will write the shortest sequence of commands needed to rebuild the current dataset in memory.
-</br>
+
 <a href="https://redis.io/topics/persistence">Redis Persistence</a>
 
 #
