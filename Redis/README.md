@@ -4,18 +4,30 @@
 #
 
 <h3>Redis Common Commands</h3>
-```bash INFO``` <p>command returns information and statistics about the server</p>
-```bash SET``` <p>Set key to hold the string value</p>
-```bash GET``` <p>Get the value of key</p>
-```bash BGSAVE``` <p>Save the DB in background</p>
-```bash SCAN``` <p>iterates the set of keys in the currently selected Redis database.</p>
-```bash HSET``` <p>Sets ```field``` in the hash stored at key to value</p>
-```bash HGET``` <p>Returns the value associated with ```field``` in the hash stored at key</p>
-```bash PING``` <p>This command is often used to test a connection</p>
-```bash KEYS``` <p>Returns all keys matching pattern</p>
-```bash BLPOP``` <p>is a blocking list pop primitive</p>
-```bash SUBSCRIBE``` <p>Subscribes the client to the specified channels</p>
-```bash PUBLISH``` <p>Posts a message to the given channel</p>
+```bash
+INFO``` <p>command returns information and statistics about the server</p>
+```bash
+SET``` <p>Set key to hold the string value</p>
+```bash
+GET``` <p>Get the value of key</p>
+```bash
+BGSAVE``` <p>Save the DB in background</p>
+```bash
+SCAN``` <p>iterates the set of keys in the currently selected Redis database.</p>
+```bash
+HSET``` <p>Sets ```field``` in the hash stored at key to value</p>
+```bash
+HGET``` <p>Returns the value associated with ```field``` in the hash stored at key</p>
+```bash
+PING``` <p>This command is often used to test a connection</p>
+```bash
+KEYS``` <p>Returns all keys matching pattern</p>
+```bash
+BLPOP``` <p>is a blocking list pop primitive</p>
+```bash
+SUBSCRIBE``` <p>Subscribes the client to the specified channels</p>
+```bash
+PUBLISH``` <p>Posts a message to the given channel</p>
 </br>
 <a href="https://redis.io/commands">Redis Commands</a> 
 
