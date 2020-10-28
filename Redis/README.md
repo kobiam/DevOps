@@ -4,20 +4,20 @@
 #
 
 <h3>Redis Common Commands</h3>
-<p>```INFO``` command returns information and statistics about the server</p>
-<p>```SET``` Set key to hold the string value</p>
-<p>```GET``` Get the value of key</p>
-<p>```BGSAVE``` Save the DB in background</p>
-<p>```SCAN``` iterates the set of keys in the currently selected Redis database.</p>
-<p>```HSET``` Sets ```field``` in the hash stored at key to value</p>
-<p>```HGET``` Returns the value associated with ```field``` in the hash stored at key</p>
-<p>```PING``` This command is often used to test a connection</p>
-<p>```KEYS``` Returns all keys matching pattern</p>
-<p>```BLPOP``` is a blocking list pop primitive</p>
-<p>```SUBSCRIBE``` Subscribes the client to the specified channels</p>
-<p>```PUBLISH``` Posts a message to the given channel</p>
+<p>```bash INFO``` command returns information and statistics about the server</p>
+<p>```bash SET``` Set key to hold the string value</p>
+<p>```bash GET``` Get the value of key</p>
+<p>```bash BGSAVE``` Save the DB in background</p>
+<p>```bash SCAN``` iterates the set of keys in the currently selected Redis database.</p>
+<p>```bash HSET``` Sets ```field``` in the hash stored at key to value</p>
+<p>```bash HGET``` Returns the value associated with ```field``` in the hash stored at key</p>
+<p>```bash PING``` This command is often used to test a connection</p>
+<p>```bash KEYS``` Returns all keys matching pattern</p>
+<p>```bash BLPOP``` is a blocking list pop primitive</p>
+<p>```bash SUBSCRIBE``` Subscribes the client to the specified channels</p>
+<p>```bash PUBLISH``` Posts a message to the given channel</p>
 </br>
-<a href="https://redis.io/commands">Redis Command</a> 
+<a href="https://redis.io/commands">Redis Commands</a> 
 
 #
 
@@ -52,7 +52,7 @@
 <p>to create a snapshot command at redis-cli:</p> ```SAVE```
 <p>to create a snapshot with intervals:</p> ```SAVE 60 1000```
 <p>that will save it every 60 seconds with at least 1000 keys changed</p>
-<p>snapshots are in file:</p> dump.rdb
+<p>snapshots are in file: dump.rdb</p>
 </br>
 <p><strong>Append-only file </strong>every time Redis receives a command that change the dataset it will append to the AOF.</p>
 <p>when Redis is restarted it will re-play the AOF to rebuild the state</p>
