@@ -1,7 +1,5 @@
 # Start Redis In Development
 
-#
-
 To start the Redis nodes with replication:
 
 `docker-compose up -d`
