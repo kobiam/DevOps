@@ -46,7 +46,7 @@ connect to the redis server
 
 `src/redis-cli -p 6379`
 
-## Install Redis slave (Ubuntu 20.04.1)
+## Install Redis replicate (Ubuntu 20.04.1)
 
 edit `redis.conf`
 
