@@ -40,7 +40,7 @@ The following line should be commented
 
 #
 
-start redis server using the redis.conf `src/redis-server redis.conf &`
+start redis server using the <strong>redis.conf</strong> `src/redis-server redis.conf &`
 
 connect to the redis server
 
@@ -50,9 +50,9 @@ connect to the redis server
 
 edit `redis.conf`
 
-find port and change it from 6379 to `6380`
+find <strong>port</strong> and change it from <strong>6379</strong> to `6380`
 
-find `replicateof` uncomment it and change to master ip and master port
+find `replicateof` uncomment it and change to [master ip] and [master port]
 
 edit `redis.conf`
 
@@ -74,7 +74,7 @@ connect to the replicate server
 
 ## Install Redis cli (Ubuntu 20.04.1)
 
-sudo apt-get install redis-tools -y
+`sudo apt-get install redis-tools -y`
 
 start redis cli
 
