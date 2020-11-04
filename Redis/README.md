@@ -45,7 +45,7 @@ try this command: `redis-benchmark -n 100`
 ### Redis Configuration
 Redis have a configuration file useally called `redis.conf` and it used to configure your redis nodes.
 
-to alter `redis.conf` you'll need to restart the node after the change but it is also possiable to do it without restart using `CONFIG SET` and `CONFIG GET`
+to alter `redis.conf` you'll need to restart the node after the change but it is also possiable to do it <strong>without restart</strong> using `CONFIG SET` and `CONFIG GET`
 
 you'll have to update both the runtime and the `redis.conf` file to ensure changes will take effect after restart.
 
@@ -66,11 +66,15 @@ either way you need to update on both `redis.conf` and runtime in nodes.
 
 <a href="https://redis.io/topics/config">Redis Configuration</a> 
 
+to start the server with `redis.conf`
+
+`src/redis-server redis.conf &`
+
 #
 
 save config without restart
 
-All the configuration parameters set using CONFIG SET are immediately loaded by Redis and will take effect starting with the next command executed.
+All the configuration parameters set using `CONFIG SET` are immediately loaded by Redis and will take effect starting with the next command executed.
 
 example: `CONFIG SET SAVE "900 1 300 10" `
 
@@ -163,4 +167,5 @@ This is a good option for HA concerns.
 Redis cluster splits your data across instances and provide automatic management and replication.
 
 
-<a href="https://redis.io/topics/sentinel">Redis Sentinel</a> 
+<a href="https://redis.io/topics/sentinel">Redis Sentinel</a> and <a href="https://docs.redislabs.com/latest/rs/administering/new-cluster-setup/">Redis Cluster</a>
+
