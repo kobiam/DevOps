@@ -19,4 +19,7 @@
 ### Hashes
 - hashes are key-value pairs
 
+### Streams
+- Stream is a data type, which models a log data structure in a more abstract way.
+
 #

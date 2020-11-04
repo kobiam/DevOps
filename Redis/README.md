@@ -68,6 +68,16 @@ either way you need to update on both `redis.conf` and runtime in nodes.
 
 #
 
+save config without restart
+
+All the configuration parameters set using CONFIG SET are immediately loaded by Redis and will take effect starting with the next command executed.
+
+example: `CONFIG SET SAVE "900 1 300 10" `
+
+<a href="https://redis.io/commands/config-set">CONFIG SET</a>
+
+#
+
 ### Redis persistence
 <strong>AOF </strong>logs every write operation received by the server, that will be played again at server statup.
 
@@ -101,7 +111,13 @@ Whenever you issue a `BGREWRITEAOF` Redis will write the shortest sequence of co
 
 ### Redis logs
 
+Setting the Log Location in redis.conf
 
+`sudo vi redis.conf`
+
+Locate the `logfile` line:
+
+`logfile /var/log/redis/redis-server.log`
 
 #
 
@@ -136,11 +152,14 @@ General policies apply to any keys that do not have expiration set.
 #
 
 ### Redis cluster and Sentinel
-Redis Sentinel will monitor your cluster and handle failovers of instances within the cluster.
+Redis Sentinel will monitor your cluster and handle <strong>automatic failovers</strong> of instances within the cluster without going to a full cluster solution.
+
+Redis Cluster is a full cluster solution that <strong>splits your database on multiple nodes</strong> and better RAM consumption.
 
 To set up a Redis cluster you'll need at least 3 Redis instances in the cluster.
 
 This is a good option for HA concerns.
+
 Redis cluster splits your data across instances and provide automatic management and replication.
 
 
