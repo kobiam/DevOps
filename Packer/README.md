@@ -7,7 +7,7 @@ Install Packer
 `sudo apt-get update && sudo apt-get install packer`   
 
 ### Validate your template. For Packer to detect any invalid configuration.
-`packer validate . `   
+`packer validate jenkins-agent-ubuntu-ami.json`   
 
 ### Build the image.
 `packer build jenkins-agent-ubuntu-ami.json`   
