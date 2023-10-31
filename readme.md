@@ -4,11 +4,11 @@ This repository is for DevOps projects and snippets.
 
 ## Cloud Native
 
-This repository is focused on cloud-native approach, meaning applications that are design to work in the cloud.
+This repository is focused on a cloud-native approach, meaning applications designed to work in the cloud.
 
 ## Production Runtime
 
-The projects in the repository can be used in production systems.
+The projects in this repository are suitable for production systems.
 
 ## Development and Deployment Pipelines
 
@@ -16,7 +16,7 @@ This repository contains development and deployment pipelines.
 
 ### How to contribute?
 
-You may contribute to this repository with your projects, clone and PR.
+You may contribute to this repository with your projects, clone, and PR.
 
 <img src="./pics/devops-banner.png" alt="DevOps" style="width:600px;"/>
 
